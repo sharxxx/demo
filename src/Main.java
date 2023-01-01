@@ -14,29 +14,29 @@ public class Main {
         int value;
         boolean isRoman = false;
         Converter oper;
-        String[] elementsOfExpression = input.split(" ");
+        String[] expElements = input.split(" ");
 
-        if (elementsOfExpression.length != 3) throw new Exception();
+        if (expElements.length != 3) throw new Exception();
 
-        CheckForRomanDigit check1 = new CheckForRomanDigit(elementsOfExpression[0]);
-        CheckForRomanDigit check2 = new CheckForRomanDigit(elementsOfExpression[2]);
+        CheckForRomanDigit check1 = new CheckForRomanDigit(expElements[0]);
+        CheckForRomanDigit check2 = new CheckForRomanDigit(expElements[2]);
 
         if (check1.isRoman() && check2.isRoman()) {
-            oper = new Converter(elementsOfExpression[0]);
+            oper = new Converter(expElements[0]);
             a = oper.getArabianDigit();
-            oper = new Converter(elementsOfExpression[2]);
+            oper = new Converter(expElements[2]);
             b = oper.getArabianDigit();
             if (a>0 && b>0 && a<11 && b<11) isRoman = true;
             else throw new Exception();
         }
-        else if (elementsOfExpression[0].matches("[1-9]|10") &&
-                elementsOfExpression[2].matches("[1-9]|10")) {
-            a = Integer.parseInt(elementsOfExpression[0]);
-            b = Integer.parseInt(elementsOfExpression[2]);
+        else if (expElements[0].matches("[1-9]|10") &&
+                expElements[2].matches("[1-9]|10")) {
+            a = Integer.parseInt(expElements[0]);
+            b = Integer.parseInt(expElements[2]);
         }
         else throw new Exception();
 
-        value = calculate(a, b, elementsOfExpression[1]);
+        value = calculate(a, b, expElements[1]);
 
         if (isRoman) {
             if (value > 0) {
